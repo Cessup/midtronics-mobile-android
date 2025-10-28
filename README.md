@@ -29,8 +29,10 @@ Create an Android application that contains the following three screens:
 
 Provide navigation between the three screens as you see fit.
 
-![List Image App](images/ss_list.png)
-![Details Image App](images/ss_details.png)
+<p align="center">
+  <img src="images/ss_list.png" alt="List Image App" width="20%">
+  <img src="images/ss_details.png" alt="Details Image App" width="20%">
+</p>
 
 
 ## Features
