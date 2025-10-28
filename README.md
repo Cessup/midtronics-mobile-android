@@ -1,6 +1,10 @@
 # Midtronics Android Application
 [![License](https://img.shields.io/github/license/Cessup/midtronics-mobile-android
 )](https://opensource.org/licenses/Apache-2.0)
+[![Workflow](https://img.shields.io/github/actions/workflow/status/Cessup/midtronics-mobile-android/midtronics-ci.yml
+)](https://github.com/Cessup/midtronics-mobile-android/actions)
+[![Commit](https://img.shields.io/github/last-commit/Cessup/midtronics-mobile-android
+)](https://github.com/Cessup/midtronics-mobile-android)
 
 ![Logo Image App](images/midtronics_logo.png)
 
