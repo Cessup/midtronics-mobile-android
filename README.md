@@ -46,6 +46,16 @@ Here's a list of features included in this project:
 > [!CAUTION]
 > This applications is on develop that continue integration.
 
+## Technologies
+
+The app uses the following multiplatform dependencies in its implementation:
+
+- [Koin](https://insert-koin.io) for dependency injection
+- [Retrofit](https://square.github.io/retrofit/) for networking
+- [Room](https://developer.android.com/training/data-storage/room) for database.
+- [Compose](https://developer.android.com/compose) for UI.
+
+
 ## Building & Running
 
 To build or run the project, use one of the following tasks:
