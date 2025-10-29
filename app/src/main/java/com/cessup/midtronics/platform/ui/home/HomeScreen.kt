@@ -24,7 +24,8 @@ import org.koin.androidx.compose.koinViewModel
  * @since 1.0
  */
 @Composable
-fun HomeScreen(onActionCountriesList: (String) -> Unit) {
+fun HomeScreen(onActionCountriesList: (String) -> Unit,
+               onNavNetworkError: (String) -> Unit) {
 
     val viewModel: HomeViewModel = koinViewModel()
 
@@ -39,6 +40,6 @@ fun HomeScreen(onActionCountriesList: (String) -> Unit) {
     ) {
         Spacer(modifier = Modifier.height(50.dp))
 
-        CountriesScreen(onActionCountriesList)
+        CountriesScreen(onActionCountriesList, onNavNetworkError )
     }
 }

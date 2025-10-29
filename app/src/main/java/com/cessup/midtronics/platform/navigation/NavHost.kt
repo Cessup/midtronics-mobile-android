@@ -69,9 +69,15 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController) {
         startDestination = HomeGraph.Home.route
     ) {
         composable(HomeGraph.Home.route) {
-            HomeScreen{
-                navController.navigate(HomeGraph.CountryDetails.withArgs(countryName = it)) {}
-            }
+            HomeScreen(
+                onActionCountriesList = {
+                    navController.navigate(HomeGraph.CountryDetails.withArgs(countryName = it))
+                },
+                onNavNetworkError = {
+                    navController.navigate(GeneralGraph.NetworkError.withArgs(error= it))
+                }
+            )
+
         }
 
         composable(
@@ -83,7 +89,11 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController) {
             )
         ) { backStackEntry ->
             val country = backStackEntry.arguments?.getString(HomeGraph.DataShare.COUNTRY_NAME.name) ?: ""
-            DetailsCountryScreen(nameCountry = country)
+            DetailsCountryScreen(
+                nameCountry = country,
+                onNavNetworkError = {
+                navController.navigate(GeneralGraph.NetworkError.withArgs(error= it))
+            })
         }
     }
 }

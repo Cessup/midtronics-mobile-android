@@ -1,5 +1,6 @@
 package com.cessup.midtronics.platform.ui.countries
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,8 +22,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.cessup.midtronics.platform.ui.UiState
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -38,11 +42,27 @@ import org.koin.androidx.compose.koinViewModel
  * @param onActionCountriesList is the action to every item
  */
 @Composable
-fun CountriesScreen(onActionCountriesList: (String) -> Unit) {
+fun CountriesScreen(onActionCountriesList: (String) -> Unit, onNavNetworkError: (String)->Unit) {
     val viewModel: CountriesViewModel = koinViewModel()
+    val state by viewModel.uiState.collectAsState()
+    val context = LocalContext.current
 
-    val countries by viewModel.countries.collectAsState()
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ){
+        when (state) {
+            is UiState.Loading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            is UiState.NetworkError -> onNavNetworkError((state as UiState.NetworkError).message)
+            is UiState.Success -> CountriesContent((state as UiState.Success).data as List<String>,onActionCountriesList)
+            is UiState.Error -> Toast.makeText(context,(state as UiState.Error).message, Toast.LENGTH_LONG).show()
+        }
+    }
+}
 
+@Composable
+fun CountriesContent(countries:List<String>,onActionCountriesList: (String)->Unit){
     Column(
         modifier = Modifier
             .fillMaxSize()

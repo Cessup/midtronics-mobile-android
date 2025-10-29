@@ -6,6 +6,8 @@ import com.cessup.midtronics.data.UserRepositoryImpl
 import com.cessup.midtronics.data.source.local.db.AppDatabase
 import com.cessup.midtronics.data.source.remote.ApiClient
 import com.cessup.midtronics.data.source.remote.CountriesServices
+import com.cessup.midtronics.data.source.remote.CountriesXml
+import com.cessup.midtronics.data.source.remote.ScalarsClient
 import com.cessup.midtronics.domain.repositories.CountriesRepository
 import org.koin.dsl.module
 import com.cessup.midtronics.domain.repositories.UserRepository
@@ -14,14 +16,15 @@ import com.cessup.midtronics.platform.ui.countries.CountryDetailsViewModel
 import com.cessup.midtronics.platform.ui.home.HomeViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
-import retrofit2.Retrofit
 
 val appModule = module {
 
-    single { ApiClient }
+    single<CountriesXml> {
+        ScalarsClient.getInstance(androidContext()).create(CountriesXml::class.java)
+    }
 
     single<CountriesServices> {
-        get<Retrofit>().create(CountriesServices::class.java)
+        ApiClient.getInstance(androidContext()).create(CountriesServices::class.java)
     }
 
     single {
@@ -34,7 +37,7 @@ val appModule = module {
     single { get<AppDatabase>().userDao() }
 
     single<UserRepository> { UserRepositoryImpl() }
-    single<CountriesRepository> { CountriesRepositoryImpl() }
+    single<CountriesRepository> { CountriesRepositoryImpl(get(),get()) }
 
     viewModel { HomeViewModel(get()) }
     viewModel { CountriesViewModel(get()) }
