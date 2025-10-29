@@ -1,4 +1,4 @@
-package com.cessup.cacao_mobile_android.platform.navigation
+package com.cessup.midtronics.platform.navigation
 
 /**
  * The GeneralGraph is a component with the routes

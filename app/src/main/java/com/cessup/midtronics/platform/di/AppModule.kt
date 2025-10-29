@@ -9,6 +9,8 @@ import com.cessup.midtronics.data.source.remote.CountriesServices
 import com.cessup.midtronics.domain.repositories.CountriesRepository
 import org.koin.dsl.module
 import com.cessup.midtronics.domain.repositories.UserRepository
+import com.cessup.midtronics.platform.ui.countries.CountriesViewModel
+import com.cessup.midtronics.platform.ui.countries.CountryDetailsViewModel
 import com.cessup.midtronics.platform.ui.home.HomeViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
@@ -33,6 +35,8 @@ val appModule = module {
 
     single<UserRepository> { UserRepositoryImpl() }
     single<CountriesRepository> { CountriesRepositoryImpl() }
-    viewModel { HomeViewModel(get()) }
 
+    viewModel { HomeViewModel(get()) }
+    viewModel { CountriesViewModel(get()) }
+    viewModel { CountryDetailsViewModel(get()) }
 }

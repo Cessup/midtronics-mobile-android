@@ -1,4 +1,4 @@
-package com.cessup.cacao_mobile_android.platform.navigation
+package com.cessup.midtronics.platform.navigation
 
 /**
  * The HomeGraph is a component with the routes
@@ -12,14 +12,14 @@ package com.cessup.cacao_mobile_android.platform.navigation
 sealed class HomeGraph(val route: String) {
     object Root : HomeGraph("home")
 
-    object Home : HomeGraph("home/start"){
-        const val routeWithArgs = "home/start/{TOKEN_VALUE}"
-        fun withArgs(token: String) = "home/start/$token"
+    object Home : HomeGraph("home/start")
+
+    object CountryDetails : HomeGraph("home/countries/details"){
+        const val routeWithArgs = "home/countries/details/{COUNTRY_NAME}"
+        fun withArgs(countryName: String) = "home/countries/details/$countryName"
     }
 
-    object Details : HomeGraph("home/start/details")
-
     enum class DataShare{
-        TOKEN_VALUE
+        COUNTRY_NAME
     }
 }

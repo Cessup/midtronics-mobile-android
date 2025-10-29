@@ -1,4 +1,4 @@
-package com.cessup.midtronics.platform.ui.home
+package com.cessup.midtronics.platform.ui.countries
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -6,12 +6,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.cessup.midtronics.platform.ui.countries.CountriesScreen
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -24,9 +26,9 @@ import org.koin.androidx.compose.koinViewModel
  * @since 1.0
  */
 @Composable
-fun HomeScreen(onActionCountriesList: (String) -> Unit) {
+fun DetailsCountryScreen(nameCountry: String) {
 
-    val viewModel: HomeViewModel = koinViewModel()
+    val viewModel: CountryDetailsViewModel = koinViewModel()
 
     val context = LocalContext.current
 
@@ -39,6 +41,10 @@ fun HomeScreen(onActionCountriesList: (String) -> Unit) {
     ) {
         Spacer(modifier = Modifier.height(50.dp))
 
-        CountriesScreen(onActionCountriesList)
+        Text(
+            text = nameCountry,
+            style = MaterialTheme.typography.headlineMedium,
+            fontWeight = FontWeight.Medium
+        )
     }
 }
