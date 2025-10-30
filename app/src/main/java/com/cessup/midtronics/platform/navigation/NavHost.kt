@@ -9,8 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import com.cessup.cacao_mobile_android.platform.navigation.GeneralGraph
-import com.cessup.cacao_mobile_android.platform.navigation.HomeGraph
+import com.cessup.midtronics.platform.ui.countries.DetailsCountryScreen
 import com.cessup.midtronics.platform.ui.home.HomeScreen
 import com.cessup.midtronics.platform.ui.network.NetworkErrorScreen
 
@@ -70,7 +69,31 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController) {
         startDestination = HomeGraph.Home.route
     ) {
         composable(HomeGraph.Home.route) {
-            HomeScreen()
+            HomeScreen(
+                onActionCountriesList = {
+                    navController.navigate(HomeGraph.CountryDetails.withArgs(countryName = it))
+                },
+                onNavNetworkError = {
+                    navController.navigate(GeneralGraph.NetworkError.withArgs(error= it))
+                }
+            )
+
+        }
+
+        composable(
+            route = HomeGraph.CountryDetails.routeWithArgs,
+            arguments = listOf(
+                navArgument(HomeGraph.DataShare.COUNTRY_NAME.name) {
+                    type = NavType.StringType
+                }
+            )
+        ) { backStackEntry ->
+            val country = backStackEntry.arguments?.getString(HomeGraph.DataShare.COUNTRY_NAME.name) ?: ""
+            DetailsCountryScreen(
+                nameCountry = country,
+                onNavNetworkError = {
+                navController.navigate(GeneralGraph.NetworkError.withArgs(error= it))
+            })
         }
     }
 }

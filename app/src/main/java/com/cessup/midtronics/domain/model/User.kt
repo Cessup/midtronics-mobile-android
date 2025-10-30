@@ -6,8 +6,7 @@ package com.cessup.midtronics.domain.model
  * @property id unique identifier
  * @property email the email the user belongs to
  * @property phone the phone of the user for account
- * @property password the password of the user for account
- * @property details All information about this user
+ * @property idDetails unique identifier to their details
  */
 data class User(
     val id: Int,

@@ -4,7 +4,7 @@ import android.content.Context
 import com.cessup.midtronics.platform.utils.NetworkConnectionInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 /**
  * ApiClient is an object got service configurations
@@ -15,8 +15,8 @@ import retrofit2.converter.gson.GsonConverterFactory
  * @since 1.0
  */
 
-object ApiClient {
-    private const val BASE_URL = "https://restcountries.com/"
+object ScalarsClient {
+    private const val BASE_URL = "https://raw.githubusercontent.com/"
     /**
      * This function give a instance of ApiService
      *
@@ -29,7 +29,7 @@ object ApiClient {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(ScalarsConverterFactory.create())
             .build()
     }
 }

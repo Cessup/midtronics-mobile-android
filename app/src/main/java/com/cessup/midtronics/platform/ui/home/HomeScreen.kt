@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.cessup.midtronics.platform.ui.countries.CountriesScreen
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -27,7 +28,9 @@ import org.koin.androidx.compose.koinViewModel
  * @since 1.0
  */
 @Composable
-fun HomeScreen() {
+fun HomeScreen(onActionCountriesList: (String) -> Unit,
+               onNavNetworkError: (String) -> Unit) {
+
     val viewModel: HomeViewModel = koinViewModel()
     val name by viewModel.userName.collectAsState()
 
@@ -45,5 +48,6 @@ fun HomeScreen() {
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Medium
         )
+        CountriesScreen(onActionCountriesList, onNavNetworkError )
     }
 }

@@ -69,6 +69,7 @@ dependencies {
     //Network
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
+    implementation(libs.converter.scalars)
 
     //Image
     implementation(libs.coil.compose)
