@@ -13,6 +13,7 @@ import com.cessup.midtronics.platform.ui.home.HomeViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
 import retrofit2.Retrofit
+import java.io.File
 
 val appModule = module {
 
@@ -23,15 +24,12 @@ val appModule = module {
     }
 
     single {
-        Room.databaseBuilder(
-            androidContext(),
-            AppDatabase::class.java,
-            "user_db"
-        ).build()
+        AppDatabase.getInstance(androidContext())
     }
+
     single { get<AppDatabase>().userDao() }
 
-    single<UserRepository> { UserRepositoryImpl() }
+    single<UserRepository> { UserRepositoryImpl(get()) }
     single<CountriesRepository> { CountriesRepositoryImpl() }
     viewModel { HomeViewModel(get()) }
 

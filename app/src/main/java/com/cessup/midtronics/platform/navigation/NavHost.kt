@@ -70,9 +70,7 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController) {
         startDestination = HomeGraph.Home.route
     ) {
         composable(HomeGraph.Home.route) {
-            HomeScreen{
-                navController.navigate(HomeGraph.Home.route)
-            }
+            HomeScreen()
         }
     }
 }

@@ -1,24 +1,29 @@
 package com.cessup.midtronics.platform.ui.home
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.cessup.midtronics.domain.repositories.UserRepository
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 
 class HomeViewModel(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
-    private val _userName = MutableStateFlow("")
-    val userName = _userName.asStateFlow()
+    private val _userName = MutableStateFlow("Welcome:")
+    val userName : StateFlow<String> = _userName
 
     init {
         loadUser()
     }
 
     private fun loadUser() {
-        // Simulate getting data from the repository
-        //_userName.value = userRepository.getUserName()
+        viewModelScope.launch {
+            userRepository.getUser(1).collect { user ->
+                _userName.value = "Welcome ${user?.email}"
+            }
+        }
     }
 }

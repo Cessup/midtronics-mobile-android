@@ -12,12 +12,14 @@ import androidx.room.PrimaryKey
  * @property gender the gender of the user
  * @property birthdate the birthday of the user
  */
-@Entity(tableName = "users_details")
-data class UserDetailsEntity(
-    @PrimaryKey(autoGenerate = true) val uid: Int =0,
+@Entity(tableName = "userdetails")
+data class UserDetails(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
     val name: String,
-    val lastName: String,
+    val lastname: String,
     val address: String,
     val gender: String,
-    val birthdate : Long
+    val birthdate: Long?,
+    val picture: String?
 )

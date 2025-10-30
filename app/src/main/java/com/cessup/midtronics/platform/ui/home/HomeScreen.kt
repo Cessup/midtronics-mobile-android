@@ -1,19 +1,18 @@
 package com.cessup.midtronics.platform.ui.home
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.koinViewModel
@@ -28,11 +27,9 @@ import org.koin.androidx.compose.koinViewModel
  * @since 1.0
  */
 @Composable
-fun HomeScreen(onHomeToDrinkMenu: () -> Unit) {
-
+fun HomeScreen() {
     val viewModel: HomeViewModel = koinViewModel()
-
-    val context = LocalContext.current
+    val name by viewModel.userName.collectAsState()
 
     Column(
         modifier = Modifier
@@ -44,7 +41,7 @@ fun HomeScreen(onHomeToDrinkMenu: () -> Unit) {
         Spacer(modifier = Modifier.height(50.dp))
 
         Text(
-            text = "Home",
+            text = name,
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Medium
         )

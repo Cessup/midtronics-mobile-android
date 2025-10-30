@@ -10,10 +10,8 @@ package com.cessup.midtronics.domain.model
  * @property details All information about this user
  */
 data class User(
-    val id: String,
+    val id: Int,
     val email: String,
     val phone: String,
-    val nickName: String,
-    val password: String,
-    val details: UserDetails
+    val idDetails: Int?
 )
