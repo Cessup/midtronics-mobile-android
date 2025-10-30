@@ -2,20 +2,14 @@ package com.cessup.midtronics.platform.ui.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import com.cessup.midtronics.platform.ui.countries.CountriesScreen
+import com.cessup.midtronics.platform.ui.profile.ProfileSection
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -28,26 +22,20 @@ import org.koin.androidx.compose.koinViewModel
  * @since 1.0
  */
 @Composable
-fun HomeScreen(onActionCountriesList: (String) -> Unit,
-               onNavNetworkError: (String) -> Unit) {
-
+fun HomeScreen(
+    onNavProfile: (String) -> Unit,
+    onActionCountriesList: (String) -> Unit,
+    onNavNetworkError: (String) -> Unit) {
     val viewModel: HomeViewModel = koinViewModel()
     val name by viewModel.userName.collectAsState()
 
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
+            .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        Spacer(modifier = Modifier.height(50.dp))
-
-        Text(
-            text = name,
-            style = MaterialTheme.typography.headlineMedium,
-            fontWeight = FontWeight.Medium
-        )
+        ProfileSection(title= name,onNavProfile)
         CountriesScreen(onActionCountriesList, onNavNetworkError )
     }
 }

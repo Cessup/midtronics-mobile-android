@@ -21,8 +21,8 @@ class HomeViewModel(
 
     private fun loadUser() {
         viewModelScope.launch {
-            userRepository.getUser(1).collect { user ->
-                _userName.value = "Welcome ${user?.email}"
+            userRepository.getUserDetails(1).collect { user ->
+                _userName.value = "Welcome ${user?.name}"
             }
         }
     }

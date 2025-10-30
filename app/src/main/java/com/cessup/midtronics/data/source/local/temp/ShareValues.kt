@@ -9,6 +9,6 @@ package com.cessup.midtronics.data.source.local.temp
  */
 enum class ShareValues{
     PREFERENCES,
-    TOKEN,
+    PICTURE,
     VOID
 }

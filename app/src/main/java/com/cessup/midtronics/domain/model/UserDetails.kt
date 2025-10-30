@@ -5,15 +5,18 @@ package com.cessup.midtronics.domain.model
  *
  * @property id unique identifier
  * @property name the name of the user
- * @property lastName the lastname of the user
+ * @property lastname the lastname of the user
+ * @property address the address of the user
  * @property gender the gender of the user
  * @property birthdate the birthday of the user
+ * @property picture the picture of the user
  */
 data class UserDetails(
-    val id: String,
+    val id: Int = 0,
     val name: String,
-    val lastName: String,
+    val lastname: String,
     val address: String,
     val gender: String,
-    val birthdate : Long
+    val birthdate: Long?,
+    val picture: String?
 )

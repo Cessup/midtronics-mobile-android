@@ -17,12 +17,12 @@ class LocalStorageImpl(context: Context) :LocalStorage {
     val editor = sharedPref.edit()
 
     /**
-     * This function save a user in the user table.
+     * This function save a user picture from URL in the local.
      *
-     * @property token unique identifier about session from server.
+     * @property imgFromUrl unique identifier about session from server.
      */
-    override fun saveToken(token: String) {
-        editor.putString(ShareValues.TOKEN.name, token)
+    override fun saveUserPictureFromUrl(imgFromUrl: String?) {
+        editor.putString(ShareValues.PICTURE.name, imgFromUrl)
         editor.apply()
     }
     /**
@@ -30,7 +30,5 @@ class LocalStorageImpl(context: Context) :LocalStorage {
      *
      * @return String that is the token about session from server.
      */
-    override fun readToken(): String? {
-        return sharedPref.getString(ShareValues.TOKEN.name, ShareValues.VOID.name)
-    }
+    override fun readUserPictureFromUrl(): String = sharedPref.getString(ShareValues.PICTURE.name, ShareValues.VOID.name) ?: ""
 }

@@ -3,6 +3,8 @@ package com.cessup.midtronics.platform.di
 import com.cessup.midtronics.data.CountriesRepositoryImpl
 import com.cessup.midtronics.data.UserRepositoryImpl
 import com.cessup.midtronics.data.source.local.db.AppDatabase
+import com.cessup.midtronics.data.source.local.temp.LocalStorage
+import com.cessup.midtronics.data.source.local.temp.LocalStorageImpl
 import com.cessup.midtronics.data.source.remote.ApiClient
 import com.cessup.midtronics.data.source.remote.CountriesServices
 import com.cessup.midtronics.data.source.remote.CountriesXml
@@ -13,6 +15,7 @@ import com.cessup.midtronics.domain.repositories.UserRepository
 import com.cessup.midtronics.platform.ui.countries.CountriesViewModel
 import com.cessup.midtronics.platform.ui.countries.CountryDetailsViewModel
 import com.cessup.midtronics.platform.ui.home.HomeViewModel
+import com.cessup.midtronics.platform.ui.profile.HeadViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
 
@@ -32,10 +35,13 @@ val appModule = module {
 
     single { get<AppDatabase>().userDao() }
 
-    single<UserRepository> { UserRepositoryImpl(get()) }
+    single<LocalStorage> { LocalStorageImpl(androidContext()) }
+
+    single<UserRepository> { UserRepositoryImpl(get(),get()) }
     single<CountriesRepository> { CountriesRepositoryImpl(get(),get()) }
 
     viewModel { HomeViewModel(get()) }
     viewModel { CountriesViewModel(get()) }
     viewModel { CountryDetailsViewModel(get()) }
+    viewModel { HeadViewModel(get()) }
 }

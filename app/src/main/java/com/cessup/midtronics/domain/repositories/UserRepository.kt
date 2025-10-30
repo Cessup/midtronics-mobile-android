@@ -1,6 +1,7 @@
 package com.cessup.midtronics.domain.repositories
 
 import com.cessup.midtronics.domain.model.User
+import com.cessup.midtronics.domain.model.UserDetails
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -21,4 +22,13 @@ interface UserRepository {
      * @return a user
      */
     suspend fun getUser(id: Int): Flow<User?>
+    /**
+     * This function return details of information about user
+     *
+     * @param idUser the user information from the services is here
+     * @return a user
+     */
+    suspend fun getUserDetails(idUser: Int): Flow<UserDetails?>
+
+    fun getUserPicture(): String
 }

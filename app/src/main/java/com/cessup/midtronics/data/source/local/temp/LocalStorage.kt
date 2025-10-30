@@ -13,13 +13,13 @@ interface LocalStorage {
     /**
      * This function save a user in the user table.
      *
-     * @param token unique identifier about session from server.
+     * @param imgFromUrl unique identifier about session from server.
      */
-    fun saveToken(token: String)
+    fun saveUserPictureFromUrl(imgFromUrl: String?)
     /**
      * This function give a user in the user table.
      *
      * @return String that is the token about session from server.
      */
-    fun readToken(): String?
+    fun readUserPictureFromUrl(): String
 }

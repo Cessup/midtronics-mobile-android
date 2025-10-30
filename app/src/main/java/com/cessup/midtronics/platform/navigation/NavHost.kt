@@ -70,6 +70,9 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController) {
     ) {
         composable(HomeGraph.Home.route) {
             HomeScreen(
+                onNavProfile = {
+                    navController.navigate(HomeGraph.CountryDetails.withArgs(countryName = it))
+                },
                 onActionCountriesList = {
                     navController.navigate(HomeGraph.CountryDetails.withArgs(countryName = it))
                 },
