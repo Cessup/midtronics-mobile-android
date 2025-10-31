@@ -19,6 +19,8 @@ sealed class HomeGraph(val route: String) {
         fun withArgs(countryName: String) = "home/countries/details/$countryName"
     }
 
+    object Profile : HomeGraph("home/profile")
+
     enum class DataShare{
         COUNTRY_NAME
     }

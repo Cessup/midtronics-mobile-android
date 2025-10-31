@@ -40,7 +40,7 @@ interface UserDao {
     /**
      * This function insert a user in the user table.
      *
-     * @property uid unique identifier of the user to help to find it in database
+     * @property id unique identifier of the user to help to find it in database
      *
      * @return [Boolean] this value is the result of the delete operation
      */
@@ -48,8 +48,6 @@ interface UserDao {
     fun getUserById(id: Int): Flow<User?>
     /**
      * This function insert a user in the user table.
-     *
-     * @property userEntity unique identifier
      *
      * @return [List<User>] Get All users in user table of database.
      */
@@ -59,11 +57,11 @@ interface UserDao {
     /**
      * This function find a user details in the user details table.
      *
-     * @property uid unique identifier of the user to help to find it in database
+     * @property id unique identifier of the user to help to find it in database
      *
-     * @return [UserDetails] this value is the result of the delete operation
+     * @return [UserWithDetails] this value is the result of the delete operation
      */
     @Transaction
-    @Query("SELECT * FROM userdetails WHERE id = :id")
-    fun getUserDetails(id: Int): Flow<UserDetails?>
+    @Query("SELECT * FROM users WHERE id = :id")
+    fun getUserWithDetailsById(id: Int): Flow<UserWithDetails?>
 }

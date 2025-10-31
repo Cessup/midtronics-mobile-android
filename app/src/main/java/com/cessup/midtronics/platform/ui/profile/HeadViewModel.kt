@@ -18,6 +18,5 @@ class HeadViewModel(
 
     private fun loadUser() {
         _picture.value = userRepository.getUserPicture()
-
     }
 }

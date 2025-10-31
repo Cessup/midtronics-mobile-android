@@ -30,7 +30,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ProfileSection(title:String,
-                   onNavProfile: (String) -> Unit) {
+                   onNavProfile: () -> Unit) {
 
     val viewModel: HeadViewModel = koinViewModel()
     val picture by viewModel.picture.collectAsState()
@@ -38,7 +38,8 @@ fun ProfileSection(title:String,
     Row (
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onNavProfile },
+            .padding(0.dp,18.dp)
+            .clickable{onNavProfile()},
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {

@@ -23,7 +23,7 @@ import org.koin.androidx.compose.koinViewModel
  */
 @Composable
 fun HomeScreen(
-    onNavProfile: (String) -> Unit,
+    onNavProfile: () -> Unit,
     onActionCountriesList: (String) -> Unit,
     onNavNetworkError: (String) -> Unit) {
     val viewModel: HomeViewModel = koinViewModel()
@@ -35,7 +35,7 @@ fun HomeScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        ProfileSection(title= name,onNavProfile)
+        ProfileSection(title= name, onNavProfile)
         CountriesScreen(onActionCountriesList, onNavNetworkError )
     }
 }

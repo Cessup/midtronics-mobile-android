@@ -2,9 +2,10 @@ package com.cessup.midtronics.data.source.local.db
 
 import androidx.room.Dao
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface SchoolDao {
     @Query("SELECT * FROM school WHERE idUser = :userId")
-    suspend fun getSchoolsByUser(userId: Int): List<School>
+    fun getSchoolsByUser(userId: Int): Flow<List<School>>
 }

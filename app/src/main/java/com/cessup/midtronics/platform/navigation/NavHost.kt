@@ -12,6 +12,7 @@ import androidx.navigation.navigation
 import com.cessup.midtronics.platform.ui.countries.DetailsCountryScreen
 import com.cessup.midtronics.platform.ui.home.HomeScreen
 import com.cessup.midtronics.platform.ui.network.NetworkErrorScreen
+import com.cessup.midtronics.platform.ui.profile.ProfileScreen
 
 /**
  * The NavHost in Compose
@@ -71,7 +72,7 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController) {
         composable(HomeGraph.Home.route) {
             HomeScreen(
                 onNavProfile = {
-                    navController.navigate(HomeGraph.CountryDetails.withArgs(countryName = it))
+                    navController.navigate(HomeGraph.Profile.route)
                 },
                 onActionCountriesList = {
                     navController.navigate(HomeGraph.CountryDetails.withArgs(countryName = it))
@@ -95,6 +96,12 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController) {
             DetailsCountryScreen(
                 nameCountry = country,
                 onNavNetworkError = {
+                navController.navigate(GeneralGraph.NetworkError.withArgs(error= it))
+            })
+        }
+
+        composable (route= HomeGraph.Profile.route){
+            ProfileScreen(onNavNetworkError = {
                 navController.navigate(GeneralGraph.NetworkError.withArgs(error= it))
             })
         }

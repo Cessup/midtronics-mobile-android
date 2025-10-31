@@ -16,6 +16,7 @@ import com.cessup.midtronics.platform.ui.countries.CountriesViewModel
 import com.cessup.midtronics.platform.ui.countries.CountryDetailsViewModel
 import com.cessup.midtronics.platform.ui.home.HomeViewModel
 import com.cessup.midtronics.platform.ui.profile.HeadViewModel
+import com.cessup.midtronics.platform.ui.profile.ProfileViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
 
@@ -44,4 +45,5 @@ val appModule = module {
     viewModel { CountriesViewModel(get()) }
     viewModel { CountryDetailsViewModel(get()) }
     viewModel { HeadViewModel(get()) }
+    viewModel { ProfileViewModel(get()) }
 }
