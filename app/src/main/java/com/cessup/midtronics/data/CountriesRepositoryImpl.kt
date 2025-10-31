@@ -24,6 +24,7 @@ class CountriesRepositoryImpl(
                     Country(
                         it.name,
                         it.capital,
+                        it.area,
                         it.region,
                         it.subregion,
                         it.population,

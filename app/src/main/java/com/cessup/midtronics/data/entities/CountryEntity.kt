@@ -3,6 +3,7 @@ package com.cessup.midtronics.data.entities
 data class CountryEntity(
     val name: Name,
     val capital: List<String>?,
+    val area: String?,
     val region: String?,
     val subregion: String?,
     val population: Long?,

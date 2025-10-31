@@ -78,7 +78,6 @@ fun CountriesContent(countries:List<String>,onActionCountriesList: (String)->Uni
             countries
         } else {
             countries.filter { country ->
-                // case-insensitive, matches any substring
                 country.contains(searchQuery.trim(), ignoreCase = true)
             }
         }
@@ -87,21 +86,10 @@ fun CountriesContent(countries:List<String>,onActionCountriesList: (String)->Uni
 
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(8.dp),
+            .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        Spacer(modifier = Modifier.height(50.dp))
-
-        Text(
-            text = "Countries",
-            style = MaterialTheme.typography.headlineLarge,
-            fontWeight = FontWeight.Medium,
-        )
-
-        Spacer(modifier = Modifier.height(10.dp))
-
         OutlinedTextField(
             value = searchQuery,
             onValueChange = { searchQuery = it },

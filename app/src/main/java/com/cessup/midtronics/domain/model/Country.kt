@@ -15,6 +15,7 @@ import com.cessup.midtronics.data.entities.Name
 data class Country (
     val name: Name,
     val capital: List<String>?,
+    val area: String?,
     val region: String?,
     val subregion: String?,
     val population: Long?,

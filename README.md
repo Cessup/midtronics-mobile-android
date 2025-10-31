@@ -13,7 +13,7 @@ This is a mobile application to test at midtronics company.
 > [!NOTE]
 > This is a exersies to show my skills on Android.
 
-## Instructions of the test
+## Instructions
 Create an Android application that contains the following three screens:
 1. Create a profile of yourself. At minimum include your name, a picture and a scrollable summary of your education and work experience.
 2. Create a screen that contains a list of countries.
@@ -34,6 +34,8 @@ Provide navigation between the three screens as you see fit.
   <img src="images/ss_details.png" alt="Details Image App" width="35%">
 </p>
 
+> [!CAUTION]
+> This applications is on develop that continue integration.
 
 ## Features
 Here's a list of features included in this project:
@@ -43,8 +45,84 @@ Here's a list of features included in this project:
 | Profile   | This feature show information about some user on the system                                    |
 | Countries | There is information about the countries. This feature has two screens to show the information |
 
-> [!CAUTION]
-> This applications is on develop that continue integration.
+
+## DATABASE
+
+This project use a database to get information about myself because the first point need a screen with this information so I chose make a script to pre-load it that can complete the first point. The diagram is to know how the database use in the project.
+
+```mermaid
+---
+title: Interview Database
+---
+erDiagram
+    direction TB
+    USERDETAILS {
+        integer id PK
+        string name
+        string lastname
+        string address
+        string gender
+        long birthdate
+        string picture
+    }
+    USERS ||--|| USERDETAILS : details
+    USERS {
+        integer id PK
+        string email
+        string phone
+        integer details FK
+    }
+    USERS ||--o{ SCHOOL : details
+    SCHOOL{
+        integer id PK
+        string name
+        string studies
+        long dateStart
+        long dateEnd
+        string picture
+        integer idUser FK
+    }
+    USERS ||--o{ WORK : details
+    WORK{
+        integer id PK
+        string position
+        string company
+        long dateStart
+        long dateEnd
+        string description
+        string picture
+        integer idUser FK
+    }
+```
+
+> [!NOTE]
+> This information show in the profile section
+
+
+## UI/UX
+
+There are all Screens to show the application at working.
+
+> [!WARNING]
+> The UI contain some issue because I focused on finish the requirements and I couldn't check some details because the time fly.
+
+<p align="center">
+  <img src="images/ss_test_splash.png" alt="Splash Image App" width="35%">
+  <img src="images/ss_test_home.png" alt="Home Image App" width="35%"><br>
+  <img src="images/ss_test_result_search.png" alt="Result Search Image App" width="35%">
+  <img src="images/ss_test_country_details.png" alt="Details Image App" width="35%"><br>
+  <img src="images/ss_test_profile.png" alt="Profile Image App" width="35%">
+  <img src="images/ss_test_profile_end.png" alt="Profile End Image App" width="35%">
+</p>
+
+> [!IMPORTANT]
+> Implementation of a screen that handles network failures.
+>
+> <p align="center">
+>   <img src="images/ss_test_network_fail.png" alt="Network Error Screen" width="45%">
+>   <br><em>Figure: Network failure screen UI</em>
+> </p>
+
 
 ## Technologies
 

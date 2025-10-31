@@ -29,7 +29,7 @@ import org.koin.androidx.compose.koinViewModel
 
 
 @Composable
-fun ProfileSection(title:String,
+fun HeadSection(title:String,
                    onNavProfile: () -> Unit) {
 
     val viewModel: HeadViewModel = koinViewModel()

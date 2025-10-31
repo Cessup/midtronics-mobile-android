@@ -71,14 +71,14 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController) {
     ) {
         composable(HomeGraph.Home.route) {
             HomeScreen(
-                onNavProfile = {
-                    navController.navigate(HomeGraph.Profile.route)
-                },
                 onActionCountriesList = {
                     navController.navigate(HomeGraph.CountryDetails.withArgs(countryName = it))
                 },
                 onNavNetworkError = {
                     navController.navigate(GeneralGraph.NetworkError.withArgs(error= it))
+                },
+                onNavProfile = {
+                    navController.navigate(HomeGraph.Profile.route)
                 }
             )
 
@@ -96,8 +96,11 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController) {
             DetailsCountryScreen(
                 nameCountry = country,
                 onNavNetworkError = {
-                navController.navigate(GeneralGraph.NetworkError.withArgs(error= it))
-            })
+                    navController.navigate(GeneralGraph.NetworkError.withArgs(error= it))
+                },
+                onNavProfile = {
+                    navController.navigate(HomeGraph.Profile.route)
+                })
         }
 
         composable (route= HomeGraph.Profile.route){

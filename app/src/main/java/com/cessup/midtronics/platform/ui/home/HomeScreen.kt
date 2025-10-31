@@ -9,7 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.cessup.midtronics.platform.ui.countries.CountriesScreen
-import com.cessup.midtronics.platform.ui.profile.ProfileSection
+import com.cessup.midtronics.platform.ui.profile.HeadSection
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -23,9 +23,9 @@ import org.koin.androidx.compose.koinViewModel
  */
 @Composable
 fun HomeScreen(
-    onNavProfile: () -> Unit,
     onActionCountriesList: (String) -> Unit,
-    onNavNetworkError: (String) -> Unit) {
+    onNavNetworkError: (String) -> Unit,
+    onNavProfile: () -> Unit) {
     val viewModel: HomeViewModel = koinViewModel()
     val name by viewModel.userName.collectAsState()
 
@@ -35,7 +35,7 @@ fun HomeScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        ProfileSection(title= name, onNavProfile)
-        CountriesScreen(onActionCountriesList, onNavNetworkError )
+        HeadSection(title= name, onNavProfile)
+        CountriesScreen(onActionCountriesList, onNavNetworkError)
     }
 }
